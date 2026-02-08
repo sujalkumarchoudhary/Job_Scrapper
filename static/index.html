@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Job Scraper - Search and analyze jobs with AI-powered insights">
+    <title>Job Scraper | Find Your Dream Job</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Animated Background -->
+        <div class="bg-gradient"></div>
+        <div class="bg-particles" id="particles"></div>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">💼</span>
+                <span class="logo-text">JobScraper</span>
+            </div>
+            <nav class="nav">
+                <span class="nav-status" id="apiStatus">
+                    <span class="status-dot"></span>
+                    <span>Ready</span>
+                </span>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1 class="hero-title">
+                    Find Your <span class="gradient-text">Dream Job</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Search thousands of jobs with AI-powered insights
+                </p>
+            </section>
+
+            <!-- Search Form -->
+            <section class="search-section">
+                <form class="search-form" id="searchForm">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔍</span>
+                            <input 
+                                type="text" 
+                                id="jobTitle" 
+                                class="input" 
+                                placeholder="Job title, keywords, or company"
+                                required
+                            >
+                        </div>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📍</span>
+                            <input 
+                                type="text" 
+                                id="location" 
+                                class="input" 
+                                placeholder="City, state, or remote"
+                                required
+                            >
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="searchBtn">
+                            <span class="btn-text">Search Jobs</span>
+                            <span class="btn-loader hidden"></span>
+                        </button>
+                    </div>
+                    <div class="filters">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" id="remoteOnly">
+                            <span class="checkmark"></span>
+                            <span>Remote Only</span>
+                        </label>
+                        <div class="filter-select">
+                            <label for="numJobs">Results:</label>
+                            <select id="numJobs" class="select">
+                                <option value="10">10</option>
+                                <option value="20" selected>20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection">
+                <div class="results-header" id="resultsHeader">
+                    <h2 class="results-title">
+                        <span id="resultsCount">0</span> Jobs Found
+                    </h2>
+                    <p class="results-query" id="resultsQuery"></p>
+                </div>
+                <div class="jobs-grid" id="jobsGrid"></div>
+            </section>
+
+            <!-- Loading State -->
+            <div class="loading-overlay hidden" id="loadingOverlay">
+                <div class="loading-spinner"></div>
+                <p class="loading-text">Searching for jobs...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-toast hidden" id="errorToast">
+                <span class="error-icon">⚠️</span>
+                <span class="error-message" id="errorMessage"></span>
+                <button class="error-close" onclick="hideError()">×</button>
+            </div>
+        </main>
+
+        <!-- AI Summary Modal -->
+        <div class="modal-overlay hidden" id="summaryModal">
+            <div class="modal">
+                <div class="modal-header">
+                    <h3 class="modal-title">
+                        <span class="ai-badge">✨ AI</span>
+                        Job Summary
+                    </h3>
+                    <button class="modal-close" onclick="closeModal()">×</button>
+                </div>
+                <div class="modal-body" id="summaryContent">
+                    <div class="summary-loading">
+                        <div class="loading-spinner small"></div>
+                        <p>Analyzing job with AI...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by <strong>SerpAPI</strong> & <strong>Groq AI</strong></p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
